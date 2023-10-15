@@ -1,0 +1,100 @@
+# Python
+env/
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.pyo
+*.pyd
+*.coverage
+.coverage.*
+.cache
+*.pkl
+*.egg-info/
+instance/
+.installed.cfg
+*.egg
+*.manifest
+*.spec
+*.env
+.env
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+media/
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# Environment Variables
+.env
+.venv/
+env.bak/
+venv.bak/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+
+# Build artifacts
+build/
+dist/
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Static files
+staticfiles/
+*.mo
+*.pot
+
+# Media files
+media/
+
+# Testing
+.coverage
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SQL files
+*.sql
+
+# Gunicorn
+gunicorn.pid
+
+# AWS Deployment
+*.pem
