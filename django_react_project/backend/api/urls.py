@@ -1,9 +1,10 @@
-from .views import HelloWorld
-from django.contrib import admin
 from django.urls import path, include
+from django.contrib import admin
+from .views import PostList, PostDetail
 
 urlpatterns = [
-    path('hello/', HelloWorld.as_view(), name='hello_world'),
+    path('posts/', PostList.as_view(), name='post_list'),
+    path('posts/<int:pk>/', PostDetail.as_view(), name='post_detail'),
 ]
 
 urlpatterns = [
