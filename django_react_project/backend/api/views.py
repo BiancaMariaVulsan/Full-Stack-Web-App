@@ -9,6 +9,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.contrib.auth import authenticate
+from rest_framework.permissions import IsAuthenticated
 
 class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
@@ -35,3 +36,8 @@ def login(request):
             'access': str(refresh.access_token),
         })
     return Response({'error': 'Invalid credentials'}, status=401)
+
+class SecureViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]

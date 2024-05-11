@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import PostList, PostDetail
+from .views import PostList, PostDetail, SecureViewSet
 from rest_framework.routers import DefaultRouter
 from .views import UserViewSet
 from .views import login
@@ -15,5 +15,6 @@ urlpatterns = [
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
+router.register(r'secure', SecureViewSet)
 
 urlpatterns = router.urls
