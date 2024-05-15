@@ -14,7 +14,7 @@ urlpatterns = [
 ]
 
 router = DefaultRouter()
-router.register(r'users', UserViewSet)
-router.register(r'secure', SecureViewSet)
+router.register(r'users', UserViewSet, basename='user')
+router.register(r'secure-users', SecureViewSet, basename='secure-user')
 
 urlpatterns = router.urls
