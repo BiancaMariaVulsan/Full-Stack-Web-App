@@ -10,6 +10,9 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.contrib.auth import authenticate
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import viewsets, permissions
+from .models import Content
+from .serializers import ContentSerializer
 
 class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
@@ -41,3 +44,11 @@ class SecureViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
+
+class ContentViewSet(viewsets.ModelViewSet):
+    queryset = Content.objects.all().order_by('-created_at')
+    serializer_class = ContentSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
