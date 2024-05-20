@@ -1,8 +1,6 @@
 from django.urls import path
-from .views import PostList, PostDetail, SecureViewSet
+from .views import ContentViewSet, PostList, PostDetail, SecureViewSet, UserViewSet, login
 from rest_framework.routers import DefaultRouter
-from .views import UserViewSet
-from .views import login
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
@@ -16,5 +14,6 @@ urlpatterns = [
 router = DefaultRouter()
 router.register(r'users', UserViewSet, basename='user')
 router.register(r'secure-users', SecureViewSet, basename='secure-user')
+router.register(r'contents', ContentViewSet, basename='content')
 
 urlpatterns = router.urls
