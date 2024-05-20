@@ -187,3 +187,9 @@ SIMPLE_JWT = {
     'USER_ID_CLAIM': 'user_id',
     'AUTH_TOKEN_CLASSES': ('access', 'refresh'),
 }
+
+ALGOLIA = {
+    'APPLICATION_ID': 'your_algolia_app_id',
+    'API_KEY': 'your_algolia_admin_api_key',
+    'INDEX_PREFIX': 'your_prefix_',
+}
