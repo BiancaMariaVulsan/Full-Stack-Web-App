@@ -21,3 +21,9 @@ class Content(models.Model):
 
     def __str__(self):
         return self.title
+    
+@register(Content)
+class ContentIndex(AlgoliaIndex):
+    fields = ('title', 'body', 'author', 'created_at')
+    settings = {'searchableAttributes': ['title', 'body']}
+    index_name = 'content'
