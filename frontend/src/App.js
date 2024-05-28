@@ -62,6 +62,9 @@ function App() {
           {handleLogout()}
           <Redirect to="/login" />
         </Route>
+        <Route path="/search">
+          <Search />
+        </Route>
       </Switch>
     </Router>
   );
