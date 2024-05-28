@@ -13,6 +13,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets, permissions
 from .models import Content
 from .serializers import ContentSerializer
+from algoliasearch_django import raw_search
 
 class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
@@ -52,3 +53,9 @@ class ContentViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
+
+@api_view(['GET'])
+def search_content(request):
+    query = request.GET.get('query', '')
+    results = raw_search(Content, query)['hits']
+    return Response(results)

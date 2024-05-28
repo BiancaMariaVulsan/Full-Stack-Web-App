@@ -2,6 +2,7 @@ from django.urls import path
 from .views import ContentViewSet, PostList, PostDetail, SecureViewSet, UserViewSet, login
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from .views import search_content
 
 urlpatterns = [
     path('posts/', PostList.as_view(), name='post-list'),
@@ -9,6 +10,7 @@ urlpatterns = [
     path('login/', login),
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('search/', search_content, name='search_content'),
 ]
 
 router = DefaultRouter()
