@@ -14,6 +14,7 @@ from rest_framework import viewsets, permissions
 from .models import Content
 from .serializers import ContentSerializer
 from algoliasearch_django import raw_search
+from ml.load_model import load_recommendation_model, get_recommendations
 
 class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
@@ -59,3 +60,9 @@ def search_content(request):
     query = request.GET.get('query', '')
     results = raw_search(Content, query)['hits']
     return Response(results)
+
+@api_view(['GET'])
+def recommend_content(request, content_id):
+    cosine_sim, df, _ = load_recommendation_model()
+    recommendations = get_recommendations(int(content_id), cosine_sim, df)
+    return Response({'recommended_content_ids': recommendations})
