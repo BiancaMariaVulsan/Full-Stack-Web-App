@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
 const Profile = () => {
+    const userContentId = 1;  // Example content ID for testing
     const [user, setUser] = useState(null);
     const history = useHistory();
 
@@ -30,8 +31,9 @@ const Profile = () => {
             <h1>User Profile</h1>
             {user ? (
                 <div>
+                    <h1>User Profile</h1>
                     <p><strong>Username:</strong> {user.username}</p>
-                    {/* Add more user details here */}
+                    <Recommendations contentId={userContentId} />
                 </div>
             ) : (
                 <p>Loading...</p>
