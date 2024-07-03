@@ -17,6 +17,7 @@ from algoliasearch_django import raw_search
 from ml.load_model import load_recommendation_model, get_recommendations
 from django.views.decorators.cache import cache_page
 from .tasks import sample_task
+from celery.result import AsyncResult
 
 class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
@@ -79,3 +80,12 @@ def start_task(request):
     duration = request.GET.get('duration', 10)
     task = sample_task.delay(int(duration))
     return Response({'task_id': task.id})
+
+@api_view(['GET'])
+def check_task_status(request, task_id):
+    task = AsyncResult(task_id)
+    return Response({
+        'task_id': task_id,
+        'task_status': task.status,
+        'task_result': task.result
+    })
