@@ -16,6 +16,7 @@ from .serializers import ContentSerializer
 from algoliasearch_django import raw_search
 from ml.load_model import load_recommendation_model, get_recommendations
 from django.views.decorators.cache import cache_page
+from .tasks import sample_task
 
 class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
@@ -72,3 +73,9 @@ def recommend_content(request, content_id):
 @cache_page(60 * 15)  # Cache the view for 15 minutes
 def cached_view(request):
     return Response({"message": "This is a cached response"})
+
+@api_view(['GET'])
+def start_task(request):
+    duration = request.GET.get('duration', 10)
+    task = sample_task.delay(int(duration))
+    return Response({'task_id': task.id})
